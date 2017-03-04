@@ -26,7 +26,7 @@ DJANGO_RELEASE = "DJANGO_RELEASE"
 DJANGO_SETTINGS_MODULE = "DJANGO_SETTINGS_MODULE"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if 'DJANGO_RELEASE' in os.environ:
+if DJANGO_RELEASE in os.environ:
     DEBUG = False
     TEMPLATE_DEBUG = False
 else:
