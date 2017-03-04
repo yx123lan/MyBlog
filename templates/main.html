@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Zxt blogs{% endblock %}
+{% block content %}
+        <div class="container main-content">
+            <div class="col-sm-9 main-content-left">
+                <h2>{{ title }}</h2>
+                <p class="date">{{ create_date|date:"F j, Y" }} by 黑暗中的一盏明灯</p>
+                <hr>
+                <div class="content">
+                    {{ content|safe }}
+                </div>
+                <button class="btn btn-default" onclick="favor(this)" id="favor" data-select="false" data-favor={{ favor }} data-id={{ blog_id }}>
+                    <span class="glyphicon glyphicon-thumbs-up"></span> 赞
+                </button>
+                <a class="btn btn-default" href="/edit-blog/{{ blog_id }}/" id="edit">
+                    修改
+                </a>
+                <nav>
+                    <ul class="pager">
+                        {% if previous_id != 0 %}
+                        <li>
+                            <a href="/main/{{ previous_id }}/">上一篇</a>
+                        </li>
+                        {% endif %} {% if next_id != 0 %}
+                        <li>
+                            <a href="/main/{{ next_id }}/">下一篇</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+                <!-- 多说评论框 start -->
+	            <div class="ds-thread" data-thread-key="{{ blog_id }}" data-title="{{ title }}" data-url="{{ page_url }}"></div>
+            </div>
+            <div class="col-sm-3 main-content-right">
+                <div class="media user-data">
+                    <div class="pull-left">
+                        <img class="user-icon" src={% static "image/avatar.jpg" %}>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">黑暗中的一盏明灯</h4>
+                        <p class="user-info">Android、Python初学者</p>
+                    </div>
+                </div>
+                <div class="right-divider"></div>
+                <div class="right-button">
+                    <a class="btn btn-primary" href="mailto:lan4627@Gmail.com">Email</a>
+                    <a class="btn btn-success" href="https://github.com/yx123lan" target="_blank">GitHub</a>
+                </div>
+                <!--<div class="navbar">
+                    <from class="navbar-form" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control search-input">
+                        </div>
+                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </from>
+                </div>!-->
+                <div class="panel-group right-tags" id="tags">
+                    <h4 class="right-news-title">最近博客</h4>
+                        <ul class="panel-collapse">
+                            {% for blog in new_blogs %}
+                            <li><a href="/main/{{ blog.id }}/">{{ blog.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    <h4 class="right-tags-title">标签</h4>
+                    <ol class="nav list-unstyled">
+                        {% for tag in tag_list %}
+                        <li>
+                            <a data-toggle="collapse" data-parent="#tags" href={{ tag.tag_href }}>{{ tag.tag_name }}</a>
+                            <ul id={{ tag.tag_id }} class="panel-collapse collapse">
+                                {% for name, href in tag.tag_li_list.items %}
+                                <li><a href="/main/{{ href }}/">{{ name }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
+            
+    </div>
+{% endblock %}
+{% block js-lib %}
+<script src="{% static "js/blog-main.js" %}"></script>
+<!-- 返回顶部按钮 start -->
+    <a id="scroll-up" href="#top" style="display: none;">
+        <div><span class="glyphicon glyphicon-chevron-up" ></span></div>
+    </a>
+    <!-- 返回顶部按钮 end -->
+    
+    <!-- 多说公共JS代码 start -->
+    <script type="text/javascript">
+        var duoshuoQuery = {short_name:"zxtcode"};
+	   (function() {
+		  var ds = document.createElement('script');
+		  ds.type = 'text/javascript';ds.async = true;
+		  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		  ds.charset = 'UTF-8';
+		  (document.getElementsByTagName('head')[0] 
+		  || document.getElementsByTagName('body')[0]).appendChild(ds);
+	   })();
+	</script>
+    <!-- 多说公共JS代码 end -->
+{% endblock %}

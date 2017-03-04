@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}全部{% endblock %}
+{% block content %}
+<div class="container main-content main-content-left">
+    {% for blog in blog_list %} {% if first_blog_id != blog.id %}
+    <hr>{% endif %}
+    <a href="/main/{{ blog.id }}/" class="allblog_title">{{ blog.title }}</a>
+    <p class="date">{{ blog.create_time|date:"F j, Y" }}</p>
+    <div>
+        {{ blog.content }}
+    </div>
+    {% endfor %}
+    <nav>
+        <ul class="pager">
+            {% if current_page > 0 %}
+            <li>
+                <a href="/list/{{ previous }}/">上一页</a>
+            </li>
+            {% endif %} {% if page_num > 0 %}
+            <li>
+                <a href="/list/{{ next }}/">下一页</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+{% endblock %}

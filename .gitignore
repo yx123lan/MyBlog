@@ -1,0 +1,4 @@
+/.idea
+/log
+/MyBlog/*.pyc
+/MyBlog/local_settings.py

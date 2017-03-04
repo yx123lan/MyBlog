@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="container main-content">
+    <form action="/preview-blog/" id="blog" method="post">
+        <div class="input-group write-title">
+            <div class="input-group-btn">
+                <button class="btn btn-default dropdown-toggle title-select-tag" data-toggle="dropdown" aria-expanded="false" name="select-tag" id="select-tag">
+                    标签 <span class="caret "></span>
+                </button>
+                <input type="hidden" name="tag" id="tag" value="{{current_tag}}">
+                <ul class="dropdown-menu">
+                    {% for tag in tag_list %}
+                    <li><a href="#" onclick="selectTag(this); return false">{{tag.name}}</a>
+                    </li>
+                    {% endfor %}
+                    <li class="divider"></li>
+                    <li><a href="###" onclick="addTag()">添加新标签</a>
+                    </li>
+                </ul>
+            </div>
+            <input type="text" class="form-control" id="title" name="title" value="{{current_title}}">
+        </div>
+        <div class="write-textarea">
+            <textarea class="form-control" rows="28" id="content" name="content">{{current_content}}</textarea>
+        </div>
+    </form>
+    <div class="write-input">
+        <button class="btn btn-default" id="preview-blog" onclick="submit(this)"><span class="glyphicon glyphicon-eye-open"></span> 预览</button>
+        <button class="btn btn-success" id="save-blog" onclick="submit(this)"><span class="glyphicon glyphicon-save"></span> 保存</button>
+        <button class="btn btn-primary" id="submit-blog" onclick="submit(this)"><span class="glyphicon glyphicon-send"></span> 提交</button>
+    </div>
+</div>
+{% endblock %}
+{% block js-lib %}
+<script src="{% static "js/blog-main.js" %}"></script>
+<script src="{% static "js/blog-write.js" %}"></script>
+{% endblock %}

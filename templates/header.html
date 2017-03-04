@@ -1,0 +1,57 @@
+        <header class="navbar navbar-static-top">
+            <div class="container">
+                <nav class="collapse navbar-collapse bs-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a {% if type_main == True %} class="navbar-active" {% endif %} href="/main/">主页</a>
+                        </li>
+                        <li><a {% if type_list == True %} class="navbar-active" {% endif %} href="/list/0/">全部</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if is_login == True %}
+                        <li class="right-title"><a id="login-button" href="###" onclick="logout()" >
+                            <span id="login-icon" class="glyphicon glyphicon-remove"></span> 登出 </a>
+                        {% else %}
+                        <li class="right-title"><a id="login-button" href="###" data-toggle="modal" data-target="#login-dialog">
+                            <span id="login-icon" class="glyphicon glyphicon-user"></span> 登录 </a>
+                        {% endif %}
+                        </li>
+                        <li id="write-blog">
+                            {% if is_login == True %}
+                            <a href="/write/"><span class="glyphicon glyphicon-pencil"></span> 写博客</a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </nav>
+                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                    <span class="glyphicon glyphicon-th-list"></span>
+                </button>
+            </div>
+            <div class="modal fade" id="login-dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">用户登录</h4>
+                    </div>
+                    <div class="modal-body">
+                    <from class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">账号</label>
+                            <div class="col-sm-6"><input class="form-control" id="username" type="text"></div>
+                            <p id="request-text" class="text-danger"></p>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">密码</label>
+                            <div class="col-sm-6"><input class="form-control" id="password" type="password"></div>
+                        </div>
+                    </from>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" onclick="login()">登录</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        </header>
+        
