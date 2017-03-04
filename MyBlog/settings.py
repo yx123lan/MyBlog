@@ -8,9 +8,6 @@ https://docs.djangoproject.com/en/1.7/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
-# settings that are not environment dependent
-from local_settings import *
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -24,6 +21,9 @@ SECRET_KEY = '-f4f#7i3)h(h6-9fc^*jeb@&7zozhhch-f1q*#0n#dx4l9b80v'
 DJANGO_RELEASE = "DJANGO_RELEASE"
 # 使用哪一个配置文件
 DJANGO_SETTINGS_MODULE = "DJANGO_SETTINGS_MODULE"
+
+# settings that are not environment dependent
+from local_settings import *
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if DJANGO_RELEASE in os.environ:
