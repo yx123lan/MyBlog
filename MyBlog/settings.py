@@ -17,8 +17,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '-f4f#7i3)h(h6-9fc^*jeb@&7zozhhch-f1q*#0n#dx4l9b80v'
-# 判断是否运行在正式服务器
-DJANGO_RELEASE = "DJANGO_RELEASE"
 # 使用哪一个配置文件
 DJANGO_SETTINGS_MODULE = "DJANGO_SETTINGS_MODULE"
 
@@ -26,12 +24,8 @@ DJANGO_SETTINGS_MODULE = "DJANGO_SETTINGS_MODULE"
 from local_settings import *
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if DJANGO_RELEASE in os.environ:
-    DEBUG = False
-    TEMPLATE_DEBUG = False
-else:
-    DEBUG = True
-    TEMPLATE_DEBUG = True
+DEBUG = False
+TEMPLATE_DEBUG = False
 
 APPEND_SLASH = False
 
