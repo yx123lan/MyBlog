@@ -17,8 +17,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '-f4f#7i3)h(h6-9fc^*jeb@&7zozhhch-f1q*#0n#dx4l9b80v'
-# 使用哪一个配置文件
-DJANGO_SETTINGS_MODULE = "DJANGO_SETTINGS_MODULE"
 
 # settings that are not environment dependent
 from local_settings import *
