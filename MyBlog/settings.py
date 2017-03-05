@@ -21,10 +21,6 @@ SECRET_KEY = '-f4f#7i3)h(h6-9fc^*jeb@&7zozhhch-f1q*#0n#dx4l9b80v'
 # settings that are not environment dependent
 from local_settings import *
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-TEMPLATE_DEBUG = False
-
 APPEND_SLASH = False
 
 ALLOWED_HOSTS = ['*']

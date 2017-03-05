@@ -14,9 +14,14 @@
                 <button class="btn btn-default" onclick="favor(this)" id="favor" data-select="false" data-favor={{ favor }} data-id={{ blog_id }}>
                     <span class="glyphicon glyphicon-thumbs-up"></span> 赞
                 </button>
+                {% if is_login == True %}
                 <a class="btn btn-default" href="/edit-blog/{{ blog_id }}/" id="edit">
                     修改
                 </a>
+                <button class="btn btn-danger" onclick="deleteBlog({{ blog_id }})" id="delete">
+                    删除
+                </button>
+                {% endif %}
                 <nav>
                     <ul class="pager">
                         {% if previous_id != 0 %}
@@ -84,7 +89,7 @@
     </div>
 {% endblock %}
 {% block js-lib %}
-<script src="{% static "js/blog-main.js" %}"></script>
+<script src='{% static "js/blog-main.js" %}'></script>
 <!-- 返回顶部按钮 start -->
     <a id="scroll-up" href="#top" style="display: none;">
         <div><span class="glyphicon glyphicon-chevron-up" ></span></div>

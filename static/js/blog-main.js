@@ -51,6 +51,20 @@ function showFavor(obj, newFavor) {
     }
 }
 
+function deleteBlog(blog_id) {
+    $.post(
+        "/delete-blog/" + blog_id + "/",
+        function (data) {
+            if (data.status == "suc") {
+                window.location.href = "/main/";
+            } else {
+                alert("删除失败");
+            }
+        },
+        "json"
+    );
+}
+
 function login() {
     $.post(
         "/main/login/",
@@ -79,6 +93,9 @@ function login() {
 function logout() {
     $.post("/main/logout/", {}, function (data) {
         if (data.status == "suc") {
+            //$("#write-blog").html("");
+            //$("#login-button").attr("onclick", "login()");
+            //$("#login-button").attr("data-toggle", "modal");
             location.reload();
         }
     }, "json");

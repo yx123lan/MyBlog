@@ -27,6 +27,7 @@ RESULT_URL = 'url'
 
 logger = logging.getLogger(__name__)
 
+
 def main(request):
     return read_blog(request, FIRST_BLOG)
 
@@ -98,6 +99,7 @@ def logout(request):
     auth.logout(request)
     return HttpResponse(json.dumps({RESULT_STATUS: RESULT_STATUS_SUCCESS}))
 
+
 @csrf_exempt
 @is_login
 def write(request):
@@ -137,7 +139,7 @@ def submit_blog(request):
         )
     try:
         blog.save()
-        return HttpResponse(json.dumps({RESULT_STATUS: RESULT_STATUS_SUCCESS, RESULT_URL: '/main/'}))
+        return HttpResponse(json.dumps({RESULT_STATUS: RESULT_STATUS_SUCCESS, RESULT_URL: '/main/' + blog.id + '/'}))
     except ValueError:
         logger.error('save blog error tag=' + data['tag'] + ' title=' + data['title'] + ' content=' + data['content'])
         return HttpResponse(json.dumps({RESULT_STATUS: RESULT_STATUS_FAILURE}))
