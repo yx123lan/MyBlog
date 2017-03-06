@@ -71,6 +71,7 @@ def all_blog_list(request, page_num):
         'is_login': request.user.is_authenticated(),
         'blog_list': blog_list,
         'type_list': True,
+        'type_main': False,
         'first_blog_id': blog_list[0].id,
         'current_page': current_page,
         'page_num': len(blog_list_all) / PAGE_SIZE - current_page,
@@ -106,7 +107,7 @@ def write(request):
     return make_write_page()
 
 
-def make_write_page(current_tag=None, current_title=None, current_content=None):
+def make_write_page(current_tag='', current_title='', current_content=''):
     t = loader.get_template("write.html")
     property_list = {
         'is_login': True,
@@ -222,7 +223,8 @@ def get_main_html(request, blog, previous_id=0, next_id=0):
         'next_id': next_id,
         'is_login': request.user.is_authenticated(),
         'page_url': request.get_full_path(),
-        'type_main': True
+        'type_main': True,
+        'type_list': False
     }
     return t.render(Context(property_len))
 
