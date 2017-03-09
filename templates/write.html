@@ -7,7 +7,7 @@
         <div class="input-group write-title">
             <div class="input-group-btn">
                 <button class="btn btn-default dropdown-toggle title-select-tag" data-toggle="dropdown" aria-expanded="false" name="select-tag" id="select-tag">
-                    标签 <span class="caret ">{{current_tag}}</span>
+                    {% if current_tag == '' %} 标签 {% else %} {{current_tag}} {% endif %} <span class="caret"></span>
                 </button>
                 <input type="hidden" name="tag" id="tag" value="{{current_tag}}">
                 <ul class="dropdown-menu">
@@ -34,6 +34,6 @@
 </div>
 {% endblock %}
 {% block js-lib %}
-<script src="{% static "js/blog-main.js" %}"></script>
-<script src="{% static "js/blog-write.js" %}"></script>
+<script src='{% static "js/blog-main.js" %}'></script>
+<script src='{% static "js/blog-write.js" %}'></script>
 {% endblock %}

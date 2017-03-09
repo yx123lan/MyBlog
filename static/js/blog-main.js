@@ -30,6 +30,9 @@ function favor(obj) {
 
 function initFavor() {
     var obj = document.getElementById("favor");
+    if (obj == null) {
+        return;
+    }
     var favor = obj.getAttribute("data-favor");
     var id = obj.getAttribute("data-id");
     var date  = obj.getAttribute("data-date");

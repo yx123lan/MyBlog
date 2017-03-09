@@ -140,9 +140,9 @@ def submit_blog(request):
         )
     try:
         blog.save()
-        return HttpResponse(json.dumps({RESULT_STATUS: RESULT_STATUS_SUCCESS, RESULT_URL: '/main/' + blog.id + '/'}))
+        return HttpResponse(json.dumps({RESULT_STATUS: RESULT_STATUS_SUCCESS, RESULT_URL: '/main/' + str(blog.id) + '/'}))
     except ValueError:
-        logger.error('save blog error tag=' + data['tag'] + ' title=' + data['title'] + ' content=' + data['content'])
+        logger.error('save blog error tag=' + data['tag'] + ' title=' + data['title'])
         return HttpResponse(json.dumps({RESULT_STATUS: RESULT_STATUS_FAILURE}))
 
 
