@@ -12,7 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib import auth
 
 from markdown2 import markdown
-from models import Blog, StoreBlog
+from models import Blog, StoreBlog, STATUS_DELETE, STATUS_ACTIVE
 from blog_checked import no_repeat, is_login
 from db_helper import get_tag_data_list, get_tag_list, get_blog_list
 
@@ -34,7 +34,7 @@ def main(request):
 
 def read_blog(request, blog_id):
     if blog_id is FIRST_BLOG:
-        blog_list = Blog.objects.filter(user_name=MAIN_ACCOUNT).order_by('-id')[0:2]
+        blog_list = Blog.objects.filter(user_name=MAIN_ACCOUNT, status=STATUS_ACTIVE).order_by('-id')[0:2]
         first_blog = blog_list[0]
         if len(blog_list) > 1:
             html = get_main_html(request, first_blog, 0, blog_list[1].id)
@@ -42,11 +42,11 @@ def read_blog(request, blog_id):
             html = get_main_html(request, first_blog)
     else:
         try:
-            current_blog = Blog.objects.get(user_name=MAIN_ACCOUNT, id=blog_id)
+            current_blog = Blog.objects.get(user_name=MAIN_ACCOUNT, status=STATUS_ACTIVE, id=blog_id)
         except ObjectDoesNotExist:
             raise Http404()
-        positive_blog = Blog.objects.filter(user_name=MAIN_ACCOUNT, id__gt=blog_id)[0:1]
-        next_blog = Blog.objects.filter(user_name=MAIN_ACCOUNT, id__lt=blog_id).order_by('-id')[0:1]
+        positive_blog = Blog.objects.filter(user_name=MAIN_ACCOUNT, status=STATUS_ACTIVE, id__gt=blog_id)[0:1]
+        next_blog = Blog.objects.filter(user_name=MAIN_ACCOUNT, status=STATUS_ACTIVE, id__lt=blog_id).order_by('-id')[0:1]
         html = get_main_html(request, current_blog, get_first_id(positive_blog) , get_first_id(next_blog))
     return HttpResponse(html)
 
@@ -136,6 +136,7 @@ def submit_blog(request):
             content=data['content'],
             create_time=datetime.datetime.now(),
             user_name=request.user.username,
+            status = STATUS_ACTIVE,
             favor=0
         )
     try:
@@ -174,7 +175,8 @@ def save_blog(request):
 def delete_blog(request, blog_id):
     try:
         blog = Blog.objects.get(id=blog_id)
-        blog.delete()
+        blog.status = STATUS_DELETE
+        blog.save()
         status = RESULT_STATUS_SUCCESS
     except ObjectDoesNotExist:
         status = RESULT_STATUS_FAILURE
@@ -184,7 +186,7 @@ def delete_blog(request, blog_id):
 @is_login
 def edit_blog(request, blog_id):
     try:
-        blog = Blog.objects.get(id=blog_id)
+        blog = Blog.objects.get(id=blog_id, status=STATUS_ACTIVE)
         return make_write_page(blog.tag, blog.title, blog.content)
     except ObjectDoesNotExist:
         return Http404
