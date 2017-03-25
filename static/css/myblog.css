@@ -136,6 +136,9 @@ header{
 .content {
     padding-bottom: 20px;
 }
+.back-up {
+    display: none;
+}
 .footer {
     position: absolute;
 	bottom: 0;

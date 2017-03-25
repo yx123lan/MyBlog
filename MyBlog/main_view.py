@@ -15,6 +15,7 @@ from markdown2 import markdown
 from models import Blog, StoreBlog, STATUS_DELETE, STATUS_ACTIVE
 from blog_checked import no_repeat, is_login
 from db_helper import get_tag_data_list, get_tag_list, get_blog_list
+from local_settings import DISQUS_URL
 
 FIRST_BLOG = -1
 PAGE_SIZE = 15
@@ -224,7 +225,8 @@ def get_main_html(request, blog, previous_id=0, next_id=0):
         'previous_id': previous_id,
         'next_id': next_id,
         'is_login': request.user.is_authenticated(),
-        'page_url': request.get_full_path(),
+        'page_url': request.build_absolute_uri(),
+        'disqus_url': DISQUS_URL,
         'type_main': True,
         'type_list': False
     }

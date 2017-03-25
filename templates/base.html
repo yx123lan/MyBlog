@@ -14,11 +14,12 @@
     {% block content %}{% endblock %}
     {% include 'footer.html' %}
     </div>
-    <script src='{% static "js/jquery.min.js" %}'></script>
-    <script src='{% static "js/bootstrap.min.js" %}'></script>
-    {% block js-lib %}{% endblock %}
 </body>
-</html>
+<link href='{% static "css/avatar.jpg" %}' rel="icon">
 <link href='{% static "css/manni.min.css" %}' rel="stylesheet">
 <link href='{% static "css/myblog.css" %}' rel="stylesheet">
 <link href='{% static "css/bootstrap-glyphicons.css" %}'  rel="stylesheet">
+<script src='{% static "js/jquery.min.js" %}'></script>
+<script src='{% static "js/bootstrap.min.js" %}'></script>
+{% block js-lib %}{% endblock %}
+</html>

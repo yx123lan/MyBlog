@@ -35,8 +35,9 @@
                         {% endif %}
                     </ul>
                 </nav>
-                <!-- 多说评论框 start -->
-	            <div class="ds-thread" data-thread-key="{{ blog_id }}" data-title="{{ title }}" data-url="{{ page_url }}"></div>
+                <!-- 评论框 start -->
+	            <div id="disqus_thread"></div>
+                <!-- 评论框 end -->
             </div>
             <div class="col-sm-3 main-content-right">
                 <div class="media user-data">
@@ -53,15 +54,6 @@
                     <a class="btn btn-primary" href="mailto:lan4627@Gmail.com">Email</a>
                     <a class="btn btn-success" href="https://github.com/yx123lan" target="_blank">GitHub</a>
                 </div>
-                <!--<div class="navbar">
-                    <from class="navbar-form" role="search">
-                        <div class="form-group">
-                            <input type="text" class="form-control search-input">
-                        </div>
-                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </from>
-                </div>!-->
                 <div class="panel-group right-tags" id="tags">
                     <h4 class="right-news-title">最近博客</h4>
                         <ul class="panel-collapse">
@@ -85,28 +77,28 @@
                     </ol>
                 </div>
             </div>
-            
+
     </div>
 {% endblock %}
 {% block js-lib %}
 <script src='{% static "js/blog-main.js" %}'></script>
 <!-- 返回顶部按钮 start -->
-    <a id="scroll-up" href="#top" style="display: none;">
-        <div><span class="glyphicon glyphicon-chevron-up" ></span></div>
-    </a>
-    <!-- 返回顶部按钮 end -->
-    
-    <!-- 多说公共JS代码 start -->
-    <script type="text/javascript">
-        var duoshuoQuery = {short_name:"zxtcode"};
-	   (function() {
-		  var ds = document.createElement('script');
-		  ds.type = 'text/javascript';ds.async = true;
-		  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		  ds.charset = 'UTF-8';
-		  (document.getElementsByTagName('head')[0] 
-		  || document.getElementsByTagName('body')[0]).appendChild(ds);
-	   })();
-	</script>
-    <!-- 多说公共JS代码 end -->
+<a id="scroll-up" href="#top" class="back-up">
+    <div><span class="glyphicon glyphicon-chevron-up" ></span></div>
+</a>
+<!-- 返回顶部按钮 end -->
+<script>
+var disqus_config = function () {
+    this.page.url = '{{ page_url }}';
+    this.page.identifier = {{ blog_id }};
+};
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '{{disqus_url}}/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+<script id="dsq-count-scr" src="{{disqus_url}}/count.js" async></script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 {% endblock %}
