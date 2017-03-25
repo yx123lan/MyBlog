@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 {% extends "base.html" %}
 {% load staticfiles %}
-{% block title %}Zxt blogs{% endblock %}
+{% block title %}Zxt的博客{% endblock %}
 {% block content %}
         <div class="container main-content">
             <div class="col-sm-9 main-content-left">
                 <h2>{{ title }}</h2>
-                <p class="date">{{ create_date|date:"F j, Y" }} by 黑暗中的一盏明灯</p>
+                <p class="date">{{ create_date|date:"F j, Y" }} by Zxt</p>
                 <hr>
                 <div class="content">
                     {{ content|safe }}
