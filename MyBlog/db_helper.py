@@ -23,7 +23,7 @@ def get_blog_list(name):
 
 
 def get_blog_by_tag_name(tag_name):
-    return Blog.objects.filter(user_name=ACCOUNT, status=STATUS_ACTIVE, tag=tag_name)
+    return Blog.objects.filter(user_name=ACCOUNT, status=STATUS_ACTIVE, tag=tag_name).order_by('-id')
 
 
 def get_tag_blog_list(tag_name):
