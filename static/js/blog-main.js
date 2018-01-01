@@ -85,7 +85,7 @@ function login() {
                 $("#write-blog").html("<a href='/write/'><span class='glyphicon glyphicon-pencil'></span> 写博客</a>");
                 $("#login-dialog").modal('hide');
             } else {
-                $("#login-button").html(btn.replace(/登出/, "登录").replace(/glyphicon glyphicon-remove/, "glyphicon glyphicon-user"))
+                $("#login-button").html(btn.html().replace(/登出/, "登录").replace(/glyphicon glyphicon-remove/, "glyphicon glyphicon-user"))
                 $("#request-text").html("登录失败");
             }
         },
