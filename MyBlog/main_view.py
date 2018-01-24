@@ -217,7 +217,7 @@ def get_main_html(request, blog, previous_id=0, next_id=0):
     property_len = {
         'title': blog.title,
         'create_date': blog.create_time,
-        'content': markdown(blog.content, extras=['fenced-code-blocks']),
+        'content': markdown(blog.content, extras=['fenced-code-blocks', 'tables']),
         'tag_list': get_tag_data_list(),
         'new_blogs': blog_list,
         'favor': blog.favor,
