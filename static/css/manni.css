@@ -5,7 +5,7 @@
 .codehilite .o { color: #555555 } /* Operator */
 .codehilite .cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
 .codehilite .cp { color: #009999 } /* Comment.Preproc */
-.codehilite .c1 { color: #0099FF; font-style: italic } /* Comment.Single */
+.codehilite .c1 { color: #0099FF; font-style: normal } /* Comment.Single */
 .codehilite .cs { color: #0099FF; font-weight: bold; font-style: italic } /* Comment.Special */
 .codehilite .gd { background-color: #FFCCCC; border: 1px solid #CC0000 } /* Generic.Deleted */
 .codehilite .ge { font-style: italic } /* Generic.Emph */
