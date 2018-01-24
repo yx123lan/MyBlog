@@ -30,6 +30,27 @@ code {
     overflow-x: auto;
 }
 
+table {
+    display: block;
+    width: 100%;
+    overflow: auto;
+}
+
+table tr {
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+}
+
+table th {
+    padding: 6px 13px;
+    border: 1px solid #ddd;
+}
+
+table td {
+    padding: 6px 13px;
+    border: 1px solid #ddd;
+}
+
 pre>code>span {
     
 }
